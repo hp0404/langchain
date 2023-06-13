@@ -17,6 +17,7 @@ class ArxivLoader(BaseLoader):
         query: str,
         load_max_docs: Optional[int] = 100,
         load_all_available_meta: Optional[bool] = False,
+        doc_content_chars_max: Optional[int] = 5000
     ):
         self.query = query
         self.load_max_docs = load_max_docs
@@ -26,6 +27,7 @@ class ArxivLoader(BaseLoader):
         arxiv_client = ArxivAPIWrapper(
             load_max_docs=self.load_max_docs,
             load_all_available_meta=self.load_all_available_meta,
+            doc_content_chars_max = self.doc_content_chars_max
         )
         docs = arxiv_client.load(self.query)
         return docs
