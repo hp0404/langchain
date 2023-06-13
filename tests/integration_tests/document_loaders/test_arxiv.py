@@ -53,3 +53,18 @@ def test_load_returns_full_set_of_metadata() -> None:
         )
         print(doc.metadata)
         assert len(set(doc.metadata)) > 4
+
+
+def test_load_returns_all_chars() -> None:
+    """Test that return document of unspecified length of chars"""
+    loader = ArxivLoader(query="0704.0002", load_max_docs=1, doc_content_chars_max=None)
+    docs = loader.load()
+    assert len(docs[0].page_content) == 47851
+
+
+def test_load_returns_limited_chars() -> None:
+    """Test that return document of unspecified length of chars"""
+    loader = ArxivLoader(query="0704.0002", load_max_docs=1, doc_content_chars_max=12345)
+    docs = loader.load()
+    assert len(docs[0].page_content) == 12345
+    
