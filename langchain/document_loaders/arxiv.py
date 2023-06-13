@@ -22,6 +22,7 @@ class ArxivLoader(BaseLoader):
         self.query = query
         self.load_max_docs = load_max_docs
         self.load_all_available_meta = load_all_available_meta
+        self.doc_content_chars_max = doc_content_chars_max
 
     def load(self) -> List[Document]:
         arxiv_client = ArxivAPIWrapper(
